@@ -1,23 +1,36 @@
-name: building .net application
+name: dovBearAssignment
 
 on:
   push:
+    branches:
+      - 'release/v*.*'
 
 jobs:
-  build_dot_net:
+  build-and-deploy:
     runs-on: ubuntu-latest
+    if: "!startsWith(github.event.head_commit.message, '#NORUN')"
     steps:
-      - uses: actions/checkout@v3
-      - name: Setup .NET Core
-        uses: actions/setup-dotnet@v3
-        with:
-          dotnet-version: '6.0.x'
+     - name: Checkout
+       uses: actions/checkout@v3
+    
+     - name: Node.js Setup
+       uses: actions/setup-node@v3
+       with:
+        node-version: 16
 
-      - name: checkout your source
-        uses: actions/checkout@v3
-        
-      - uses: actions/setup-node@v3
+     - name: Install Railway
+       run: npm i -g @railway/cli
+
+     - name: deploy 
+       run: railway up
+       env:
+        RAILWAY_TOKEN: ${{ secrets.RAILWAYTOKEN }}
+
+     - name: Send Github Action trigger data to Slack
+       id: Slack
+       uses: slackapi/slack-github-action@v1.23.0
+       env:
+        SLACK_WEBHOOK_URL: ${{ secrets.TESTLINK }}
         with:
-          node-version: 16
-      - run: npm ci
-      - run: npm test
+          status: ${{ job.status }}
+          fields: |
