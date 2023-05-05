@@ -1,8 +1,9 @@
 name: dovBearAssignment
 
 on:
-  push
-
+  push:
+    branches:
+      - 'release/v*.*'
 
 jobs:
   build-and-deploy:
@@ -79,9 +80,7 @@ jobs:
                 }
               }
             ]
-            }
           }
-
     env:
       SLACK_WEBHOOK_URL: ${{ secrets.TESTLINK }}
       SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
