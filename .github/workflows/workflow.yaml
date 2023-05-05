@@ -1,7 +1,9 @@
 name: dovBearAssignment
 
 on:
-  push
+  push:
+    branches:
+      - 'release/v*.*'
 
 jobs:
   build-and-deploy:
