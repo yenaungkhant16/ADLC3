@@ -52,11 +52,11 @@ jobs:
                   },
                   {
                     "type": "mrkdwn",
-                    "text": "*Matriculation:* Mar 10, 2015 (3 years, 5 months)"
+                    "text": "*Matriculation:* A0269746J"
                   },
                   {
                     "type": "mrkdwn",
-                    "text": "*Repository:*\n"
+                    "text": "*Repository:* ${{ github.server_url }}/${{ github.repository }}"
                   }
                 ]
               },
@@ -64,17 +64,17 @@ jobs:
                 "type": "section",
                 "text": {
                   "type": "mrkdwn",
-                  "text": "\n"
+                  "text": "\n secrets.RAILWAYPRODUCTIONLINK"
                 },
                 "accessory": {
                   "type": "button",
                   "text": {
                     "type": "plain_text",
-                    "text": "Click Me",
+                    "text": "Go",
                     "emoji": true
                   },
                   "value": "click_me_123",
-                  "action_id": "button-action"
+                  "action_id": "secrets.RAILWAYPRODUCIONLINK"
                 }
               }
             ]
