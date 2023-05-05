@@ -1,7 +1,8 @@
 name: dovBearAssignment
 
 on:
-  push:
+  push
+
 
 jobs:
   build-and-deploy:
@@ -23,3 +24,64 @@ jobs:
        run: railway up
        env:
         RAILWAY_TOKEN: ${{ secrets.RAILWAYTOKEN }}
+
+     - name: Send Github Action trigger data to Slack
+       id: Slack
+       uses: slackapi/slack-github-action@v1.23.0
+       with:
+        payload: |
+          {
+            "blocks": [
+              {
+                "type": "header",
+                "text": {
+                  "type": "plain_text",
+                  "text": "DipSA 56 CI/CD Submission",
+                  "emoji": true
+                }
+              },
+              {
+                "type": "section",
+                "fields": [
+                  {
+                    "type": "mrkdwn",
+                    "text": "*Name:* Ye Naung Khant"
+                  },
+                  {
+                    "type": "mrkdwn",
+                    "text": "*Email:* E1114085@u.nus.edu"
+                  },
+                  {
+                    "type": "mrkdwn",
+                    "text": "*Matriculation:* Mar 10, 2015 (3 years, 5 months)"
+                  },
+                  {
+                    "type": "mrkdwn",
+                    "text": "*Repository:*\n"
+                  }
+                ]
+              },
+              {
+                "type": "section",
+                "text": {
+                  "type": "mrkdwn",
+                  "text": "\n"
+                },
+                "accessory": {
+                  "type": "button",
+                  "text": {
+                    "type": "plain_text",
+                    "text": "Click Me",
+                    "emoji": true
+                  },
+                  "value": "click_me_123",
+                  "action_id": "button-action"
+                }
+              }
+            ]
+            }
+          }
+
+    env:
+      SLACK_WEBHOOK_URL: ${{ secrets.TESTLINK }}
+      SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
