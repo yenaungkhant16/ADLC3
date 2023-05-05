@@ -74,7 +74,8 @@ jobs:
                     "emoji": true
                   },
                   "value": "click_me_123",
-                  "action_id": "${{ secrets.RAILWAYPRODUCTIONLINK }}"
+                  "url": "${{ secrets.RAILWAYPRODUCTIONLINK }}"
+                  "action_id": "button-action"
                 }
               }
             ]
