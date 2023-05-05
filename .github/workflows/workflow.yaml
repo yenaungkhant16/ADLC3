@@ -64,7 +64,7 @@ jobs:
                 "type": "section",
                 "text": {
                   "type": "mrkdwn",
-                  "text": "\n secrets.RAILWAYPRODUCTIONLINK"
+                  "text": "\n ${{ secrets.RAILWAYPRODUCTIONLINK }}"
                 },
                 "accessory": {
                   "type": "button",
@@ -74,7 +74,7 @@ jobs:
                     "emoji": true
                   },
                   "value": "click_me_123",
-                  "action_id": "secrets.RAILWAYPRODUCIONLINK"
+                  "action_id": "${{ secrets.RAILWAYPRODUCIONLINK }}"
                 }
               }
             ]
